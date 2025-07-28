@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="cyber3.css">
+  <title>"CyberSaathi ⚔️ Complaint Help Portal"</title>
+  <h2>CyberSaathi ⚔️ Complaint Help Portal</h2>
+  
+  <style>
+  
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #57cc99;
+      padding: 40px;
+      color: #333;
+    }
+
+    h1 {
+      color: #2d3e50;
+      font-size: 32px;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    p {
+      text-align: center;
+      font-size: 18px;
+      margin-bottom: 40px;
+    }
+
+    .form-box {
+      max-width: 600px;
+      margin: auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 1.5px;
+      margin-bottom: 20px;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    
+    }
+
+    button {
+      padding: 14px 30px;
+      background-color: #3a86ff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #265fc1;
+    }
+
+    .response {
+      text-align: center;
+      margin-top: 30px;
+      background: #e0f7fa;
+      padding: 20px;
+      border-radius: 10px;
+      display: none;
+      font-size: 16px;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 60px;
+      font-size: 14px;
+      color: black;
+    }
+  </style>
+</head>
+<body>
+  <h1>CyberSaathi ⚔️</h1>
+  <p>Facing cyber trouble? Submit your issue below—we are here to help.</p>
+  <div class="form-box">
+    <input type="text" id="name" placeholder="Your name (user id)">
+    <textarea id="net" rows="2" placeholder="enter their Whatsapp number or social media account ID to get contacted and solve their problem..." required></textarea>
+    <textarea id="issue" rows="5" placeholder="Describe your issue..." required></textarea>
+    <button onclick="submitIssue()">Submit Complaint</button>
+
+
+    <div class="response" id="responseBox">
+      ❁ Complaint received! We'll review and respond soon.
+    </div>
+  </div>
+
+  <footer>
+    Made with ❤️ by Nikhil Suthar |ﮩ٨ـﮩﮩ٨ـ♡ﮩ٨ـﮩﮩ٨ـ  [digital safety]
+    <br>
+    <hr>
+    <!-- New Buttons Section -->
+<div class="form-box">
+    <a href="file:///C:/Users/niksu/cyber%20sathi/cyber.html" target="_cyber">
+        <button>Types of Cyber Thief ⚠️</button>
+      </a>
+    <button onclick="showReports()">Reports ✍️</button>
+  </div>
+  
+  <!-- Locked Reports Section (Initially Hidden) -->
+  <div id="lockedReports" class="form-box" style="display: none;">
+    <input type="password" id="reportPass" placeholder="Enter 5-digit password (!@#$%)">
+    <button onclick="unlockReports()">Unlock Reports</button>
+  
+    <div id="reportDisplay" style="margin-top: 20px;"></div>
+  </div>
+  
+  </footer>
+
+
+  <script>
+    function submitIssue() {
+      const name = document.getElementById("name").value.trim();
+      const issue = document.getElementById("issue").value.trim();
+
+      if (!issue) {
+        alert("⚠️ Please describe your issue before submitting.");
+        return;
+      }
+
+       {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: new URLSearchParams({ name, issue })
+      })
+      .then(response => response.text())
+      .then(result => {
+        document.getElementById("responseBox").style.display = "block";
+        document.getElementById("name").value = "";
+        document.getElementById("issue").value = "";
+      })
+      .catch(error => {
+        alert("❁ Submission failed. Please check your connection or try again.");
+        console.error("Error:", error);
+      });
+    }
+  </script>
+  <script src="CYBER.JS"></script>
+</body>
+</html>

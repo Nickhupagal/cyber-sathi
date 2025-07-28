@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cyber Sathi</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    form, #reportSection {
+      margin-bottom: 30px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    input, textarea {
+      display: block;
+      margin-bottom: 10px;
+      padding: 8px;
+      width: 100%;
+    }
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .report-card {
+      border: 1px solid #bbb;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Cyber Sathi 🛡️</h1>
+
+  <!-- Report Submission Form -->
+  <form id="reportForm">
+    <input type="text" id="name" placeholder="Apna naam likhiye" required>
+    <textarea id="report" placeholder="Apna report likhiye yahan..." required></textarea>
+    <button type="submit">Report Submit Karo</button>
+  </form>
+
+  <!-- Submitted Reports Display -->
+  <div id="reportSection">
+    <h2>📝 Submit Hui Reports</h2>
+    <div id="reportList"></div>
+  </div>
+
+  <script>
+    const form = document.getElementById('reportForm');
+    const reportList = document.getElementById('reportList');
+
+    const savedReports = JSON.parse(localStorage.getItem('cyberReports')) || [];
+
+    function renderReports() {
+      reportList.innerHTML = '';
+      savedReports.forEach((report, index) => {
+        const div = document.createElement('div');
+        div.classList.add('report-card');
+        div.innerHTML = `
+          <strong>${report.name}</strong><br>
+          <p>${report.text}</p>
+        `;
+        reportList.appendChild(div);
+      });
+    }
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const text = document.getElementById('report').value;
+
+      savedReports.push({ name, text });
+      localStorage.setItem('cyberReports', JSON.stringify(savedReports));
+
+      form.reset();
+      renderReports();
+    });
+
+    renderReports();
+  </script>
+
+</body>
+</html>
